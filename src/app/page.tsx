@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [todo, setTodo] = useState("");
-  const { Todos, addTodo } = useStore();
+  const { Todos, addTodo, remove } = useStore();
 
   const handelAdd = () => {
     if (!todo) return alert("Please enter a todo");
@@ -42,7 +42,10 @@ export default function Home() {
               <button className="flex-none mx-4 bg-indigo-200 p-5 rounded-lg">
                 edit
               </button>
-              <button className="flex-none bg-indigo-200 p-5 rounded-lg">
+              <button
+                className="flex-none bg-indigo-200 p-5 rounded-lg"
+                onClick={() => remove(index)}
+              >
                 delete
               </button>
             </div>
