@@ -7,7 +7,7 @@ export default function Home() {
   const [todo, setTodo] = useState("");
   const { Todos, addTodo, remove } = useStore();
 
-  const handelAdd = () => {
+  const handleAdd = () => {
     if (!todo) return alert("Please enter a todo");
     addTodo(todo);
     setTodo("");
@@ -26,7 +26,7 @@ export default function Home() {
           />
           <button
             className="w-1/6 bg-indigo-200 rounded-r-lg p-5"
-            onClick={handelAdd}
+            onClick={handleAdd}
           >
             Submit!
           </button>
@@ -34,17 +34,18 @@ export default function Home() {
 
         <div className="px-10">
           {Todos.map((todo, index) => (
-            <div className="flex pt-5" key={todo}>
+            <div className="flex pt-5" key={todo.id}>
               <input
                 className="flex-1 placeholder:text-gray-400 border-0 p-5 rounded-lg focus:outline-none"
-                value={todo}
+                disabled={true}
+                value={todo.text}
               />
               <button className="flex-none mx-4 bg-indigo-200 p-5 rounded-lg">
                 edit
               </button>
               <button
                 className="flex-none bg-indigo-200 p-5 rounded-lg"
-                onClick={() => remove(index)}
+                onClick={() => remove(todo.id)}
               >
                 delete
               </button>
