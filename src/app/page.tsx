@@ -2,10 +2,15 @@
 
 import { useStore } from "./store/store";
 import { useState } from "react";
+import {
+  MdOutlineCheckBoxOutlineBlank,
+  MdOutlineCheckBox,
+} from "react-icons/md";
 
 export default function Home() {
   const [todo, setTodo] = useState("");
-  const { Todos, addTodo, remove, updateDisabled, update } = useStore();
+  const { Todos, addTodo, remove, updateDisabled, update, updateChecked } =
+    useStore();
 
   const handleAdd = () => {
     if (!todo) return alert("Please enter a todo");
@@ -35,6 +40,17 @@ export default function Home() {
         <div className="px-10">
           {Todos.map((todo, index) => (
             <div className="flex pt-5" key={todo.id}>
+              <div className="flex-none mr-2 content-center">
+                {todo.isChecked ? (
+                  <button onClick={() => updateChecked(todo.id, false)}>
+                    <MdOutlineCheckBox size="30" />
+                  </button>
+                ) : (
+                  <button onClick={() => updateChecked(todo.id, true)}>
+                    <MdOutlineCheckBoxOutlineBlank size="30" />
+                  </button>
+                )}
+              </div>
               <input
                 className="flex-1 placeholder:text-gray-400 border-0 p-5 rounded-lg focus:outline-none"
                 disabled={todo.isDisabled}

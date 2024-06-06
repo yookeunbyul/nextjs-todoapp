@@ -4,6 +4,7 @@ interface TodosType {
   id: number;
   text: string;
   isDisabled: boolean;
+  isChecked: boolean;
 }
 
 interface Store {
@@ -11,12 +12,13 @@ interface Store {
   addTodo: (todo: string) => void;
   remove: (id: number) => void;
   updateDisabled: (id: number, disabled: boolean) => void;
+  updateChecked: (id: number, check: boolean) => void;
   update: (id: number, newText: string) => void;
 }
 
 //store 생성
 export const useStore = create<Store>((set) => ({
-  Todos: [{ id: 0, text: "공부하기", isDisabled: true }],
+  Todos: [{ id: 0, text: "공부하기", isDisabled: true, isChecked: false }],
   addTodo: (todo: string) =>
     set((state) => {
       const lastId = state.Todos.length > 0 ? state.Todos[0].id : 0;
@@ -36,6 +38,12 @@ export const useStore = create<Store>((set) => ({
     set((state) => ({
       Todos: state.Todos.map((todo) =>
         todo.id === id ? { ...todo, text: newText } : todo
+      ),
+    })),
+  updateChecked: (id: number, check: boolean) =>
+    set((state) => ({
+      Todos: state.Todos.map((todo) =>
+        todo.id === id ? { ...todo, isChecked: check } : todo
       ),
     })),
 }));
