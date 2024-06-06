@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [todo, setTodo] = useState("");
-  const { Todos, addTodo, remove } = useStore();
+  const { Todos, addTodo, remove, updateDisabled, update } = useStore();
 
   const handleAdd = () => {
     if (!todo) return alert("Please enter a todo");
@@ -37,12 +37,25 @@ export default function Home() {
             <div className="flex pt-5" key={todo.id}>
               <input
                 className="flex-1 placeholder:text-gray-400 border-0 p-5 rounded-lg focus:outline-none"
-                disabled={true}
+                disabled={todo.isDisabled}
                 value={todo.text}
+                onChange={(e) => update(todo.id, e.target.value)}
               />
-              <button className="flex-none mx-4 bg-indigo-200 p-5 rounded-lg">
-                edit
-              </button>
+              {todo.isDisabled ? (
+                <button
+                  className="flex-none mx-4 bg-indigo-200 p-5 rounded-lg"
+                  onClick={() => updateDisabled(todo.id, false)}
+                >
+                  edit
+                </button>
+              ) : (
+                <button
+                  className="flex-none mx-4 bg-indigo-200 p-5 rounded-lg"
+                  onClick={() => updateDisabled(todo.id, true)}
+                >
+                  done
+                </button>
+              )}
               <button
                 className="flex-none bg-indigo-200 p-5 rounded-lg"
                 onClick={() => remove(todo.id)}
