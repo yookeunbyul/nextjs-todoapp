@@ -13,7 +13,7 @@ Next.js와 zustand, tailwind CSS를 학습하기 위해 진행한 토이 프로�
 
 <br />
 
-### 실행
+## 실행
 
 ```
 $ npm install
@@ -22,7 +22,7 @@ $ npm run dev
 
 <br />
 
-### 프로젝트를 진행하며 느낀 점
+## 프로젝트를 진행하며 느낀 점
 
 한번 zustand와 tailwind CSS를 어떻게 사용하는지가 궁금해서 간단하게 Todo App을 만들어봤다. tailwind CSS는 옛날에 부트스트랩으로 스타일링했던 경험이 떠올랐고 원하는 속성를 위해 className을 서칭하느라 시간을 많이 잡아먹었다. 그래서 딱히 긍정적인 느낌이 들진 않았다.
 
