@@ -14,7 +14,7 @@ import {
 export default function Home() {
   const [todo, setTodo] = useState("");
   const { Todos, addTodo, remove, updateDisabled, update, updateChecked } =
-    useStore();
+    useStore((state) => state);
 
   const handleAdd = () => {
     if (!todo) return alert("Please enter a todo");
